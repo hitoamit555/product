@@ -14,13 +14,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue
-    float SKU;
+    //@GeneratedValue
+    int suk;
     String productName;
     String brand;
-    String price;
-    String Color;
-    String Size;
+    long price;
+    String color;
+    int size;
 
     //TODO: int Size to create function
 
