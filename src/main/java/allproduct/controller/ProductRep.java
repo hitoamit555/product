@@ -15,11 +15,8 @@ public interface ProductRep extends JpaRepository<Product, Integer> {
 
     List<Product> findByBrand(String brand);
     List<Product> findByColor(String color);
-    @Query(value ="select productName, sum(size) as quantity from Product p group by p.suk = :suk",nativeQuery = true)
+    @Query(value ="select sum(size) as quantity from Product p group by p.suk = :suk",nativeQuery = true)
     List<Product> findTest1(int suk);
-
-   // @Query("select count(size) from Product p group by p.suk = :suk")
-   // int findBySize(int suk);
 
     @Query("select sum(size) from Product p where p.suk = :suk")
     int findBySize(int suk);
