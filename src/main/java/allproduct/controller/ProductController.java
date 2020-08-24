@@ -2,19 +2,19 @@ package allproduct.controller;
 
 import allproduct.controller.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 /*This product used in memory data that as we want
         we can clear date evry 2 hours by restart app*/
 
 
-
-//@RestController
-//@Controller
-//@ResposeBody
-
 @RestController
-@Self4j
+////@Self4j
 class ProductController {
     //Rep to
     @Autowired
@@ -27,42 +27,79 @@ class ProductController {
 
 
     @PostMapping("/addProduct")
-    public String insertProduct(Product p)
+    public String insertProduct(@RequestBody Product p)
     {
         productRep.save(p);
-        log.info("added into H2 DB")
+        //log.info("added into H2 DB")
         return "product has been added into H2 DB";
     }
 
 
-    @GetMapping("/getProdict")
+    @GetMapping("/getAllProduct")
     public List<Product> getAllProduct()
     {
         return productRep.findAll();
     }
 
-
-    @GetMapping("/getByProdict/{suk)")
-    public int getAllProduct(@PathVarable String suk  )
+    @GetMapping("/getProductBySUK/{suk}")
+    public List<Product> getAllProduct1(@PathVariable int suk  )
     {
-        return productRep.findBySuk(productname);
+        System.out.println("all product print:");
+        return productRep.findBySuk(suk);
+        // return productRep.findByProdCnt(productname);
+
+    }
+
+    @GetMapping("/getProductCnt/{suk}")
+    public int getAllProductCnt(@PathVariable int suk  )
+    {
+        System.out.println("suk:"+suk);
+        return productRep.findBySize(suk);
+        // return productRep.findByProdCnt(productname);
+
+    }
+    @GetMapping("/getProductByColor/{color}")
+    public List<Product> getAllProduct1(@PathVariable String color  )
+    {
+        return productRep.findByColor(color);
+        // return productRep.findByProdCnt(productname);
+
+    }
+
+    @GetMapping("/getProductGroupBy/{suk}")
+    public List<Product> getGroupBy(@PathVariable int suk  )
+    {
+        return productRep.findTest1(suk);
+        // return productRep.findByProdCnt(productname);
+
+    }
+
+
+
+
+    @GetMapping("/getByProduct/{productname}")
+    public List<Product> getAllProduct(@PathVariable String productname  )
+    {
+        return productRep.findByProductName(productname);
+        //return productRep.findBySuk(suk);
     }
     /*
     Count from sql query
-     */
-    @GetMapping("/getProductCnt/{productname)")
-    public List<Product> getAllProduct(@PathVarable String productname  )
+     *//*
+    @GetMapping("/getProductCnt/{suk})")
+    public List<Product> getAllProduct1(@PathVariable int suk  )
     {
 
+        return productRep.findBySuk(suk);
+       // return productRep.findByProdCnt(productname);
 
-        return productRep.findByProdCnt(productname)
+    }*/
 
-    }
  /*
     Count from java  service
      */
 
-    @GetMapping("/getProductCntService/{productname)")
+   /* @GetMapping("/getProductCntService/{productname)")
     public List<Product> getAllProduct(@PathVarable String productname  )
     {
 
@@ -72,12 +109,12 @@ class ProductController {
         return productRep.findByProd(productname);
 
 
-    }
-    @GetMapping("/getByProdict/{id)")
-    public List<Product> getAllProduct(@PathVarable String id  )
+    }*/
+    /*@GetMapping("/getByProdict/{id)")
+    public List<Product> getAllProduct(@PathVariable String id  )
     {
         return productRep.findById(id);
-    }
+    }*/
 
 
 

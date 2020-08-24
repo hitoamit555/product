@@ -1,4 +1,7 @@
-controller\ProductRep.class
-product\Product.class
-controller\ProductController.class
-controller\SpringBootProduct.class
+allproduct\controller\ProductController.class
+allproduct\controller\AllProduct\AllProduct.class
+allproduct\controller\ProductRep.class
+allproduct\controller\SpringBootProduct.class
+allproduct\controller\AllProduct\Standardproduct.class
+allproduct\controller\product\Product.class
+allproduct\controller\productService.class
