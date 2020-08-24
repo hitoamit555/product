@@ -20,3 +20,5 @@ git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/hitoamitkumar/product.git
 git push -u origin master
+
+some others practice set 2 :https://github.com/nitesh619/GenerateReport
